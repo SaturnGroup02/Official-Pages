@@ -212,6 +212,7 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             margin-bottom: 80px;
+            align-items: stretch;
         }
 
         .card {
@@ -247,10 +248,16 @@
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 255, 136, 0.1) 100%);
         }
 
+        /* アイコン領域は全カード共通で絵文字サイズ(3rem=48px)に固定 */
         .card-icon {
             font-size: 3rem;
+            line-height: 1;
+            width: 3rem;
+            height: 3rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 15px;
-            display: inline-block;
             transform-origin: center center;
         }
 
@@ -261,6 +268,16 @@
         @keyframes rotateIcon {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
+        }
+
+        /* ss.png も周りの絵文字と同じ 3rem(48px) に固定 */
+        .card-icon img {
+            width: 3rem;
+            height: 3rem;
+            max-width: 3rem;
+            max-height: 3rem;
+            object-fit: contain;
+            display: block;
         }
 
         .card h3 {
@@ -450,8 +467,8 @@
         <div class="language-selector">
             <button class="lang-btn" onclick="setLanguage('ja')"><span class="lang-text">Ja</span><span class="lang-flag">🇯🇵</span></button>
             <button class="lang-btn" onclick="setLanguage('en')"><span class="lang-text">En</span><span class="lang-flag">🇬🇧</span></button>
-            <button class="lang-btn" onclick="setLanguage('vn')"><span class="lang-text">VN</span><span class="lang-flag">🇻🇳</span></button>
-            <button class="lang-btn" onclick="setLanguage('br')"><span class="lang-text">Br</span><span class="lang-flag">🇧🇷</span></button>
+            <button class="lang-btn" onclick="setLanguage('vn')"><span class="lang-text">VN</span><span class="lang-flag">🇻</span></button>
+            <button class="lang-btn" onclick="setLanguage('ru')"><span class="lang-text">Ru</span><span class="lang-flag">🇷🇺</span></button>
             <button class="lang-btn" onclick="setLanguage('th')"><span class="lang-text">Th</span><span class="lang-flag">🇹🇭</span></button>
         </div>
     </nav>
@@ -508,24 +525,23 @@
                 </div>
             </div>
 
-            <!-- BOT -->
+            <!-- 土星スタジオ（旧BOT） -->
             <div class="card" onclick="toggleDetail(this)">
-                <div class="card-icon">💽</div>
-                <h3>BOT</h3>
-                <p>土星グループ運営のテスト段階BOT</p>
+                <div class="card-icon"><img src="ss.png" alt="" width="48" height="48"></div>
+                <h3>土星スタジオ</h3>
+                <p>土星グループ傘下の技術的コミュニティ。健全なコミュニティを目指す</p>
                 <a class="card-cta">詳しく見る →</a>
                 <div class="detail" style="display:none; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(0, 255, 136, 0.3);">
-                    <p>現在土星グループはテスト段階のBOTを運営しています。</p>
+                    <p>土星スタジオは土星グループ傘下の技術的コミュニティであり、健全なコミュニティを目指しています。活動内容として、AsaRye-AIというディスコードBOTを運営しています。</p>
                     <p style="margin-top: 15px;">
-                        <strong>LuaRye-Q7B</strong><br>
-                        現在非公開です
+                        <strong>🤖 AsaRye-AI</strong><br>
+                        土星スタジオが運営するDiscord BOT
                     </p>
-                    <p style="margin-top: 10px;">
-                        <strong>AsaRye-G2B</strong><br>
-                        現在は無料で利用できます
-                    </p>
-                    <p style="margin-top: 15px;">
-                        <a href="https://discord.com/oauth2/authorize?client_id=1536401706751885374&permissions=5630051437631616&response_type=code&redirect_uri=https%3A%2F%2Fsaturngroup02.github.io%2FOfficial-Pages%2F&integration_type=0&scope=bot" target="_blank" style="color: #00FF88; text-decoration: none; font-weight: bold;">招待リンク →</a>
+                    <p style="margin-top: 15px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
+                        <a href="https://saturngroup02.github.io/AsaRye-AI/" target="_blank" style="color: #00FF88; text-decoration: none; font-weight: bold;">詳しくはこちら<br>公式サイト →</a>
+                        <a href="https://discord.com/oauth2/authorize?client_id=1536401706751885374&permissions=5630051437627520&integration_type=0&scope=bot" target="_blank" style="color: #00FF88; text-decoration: none; font-weight: bold;">BOTを招待する →</a>
+                        <a href="https://saturngroup02.github.io/SaturnStudioHome/" target="_blank" style="color: #00FF88; text-decoration: none; font-weight: bold;">土星スタジオ公式サイト →</a>
+                        <a href="https://discord.gg/ujX793DgjD" target="_blank" style="color: #00FF88; text-decoration: none; font-weight: bold;">公式ディスコード →</a>
                     </p>
                 </div>
             </div>
@@ -687,15 +703,17 @@
                     desc: "ルートラボなどの広告をスキップできるBypassBOT🔑を共有",
                     detail: "ルートラボなどの広告をスキップできるBypassBOT🔑や各種ツールを共有しています。"
                 },
-                bot: {
-                    title: "BOT",
-                    desc: "土星グループ運営のテスト段階BOT",
-                    detail: "現在土星グループはテスト段階のBOTを運営しています。",
-                    luaRye: "LuaRye-Q7B",
-                    luaRyeDesc: "現在非公開です",
-                    asaRye: "AsaRye-G2B",
-                    asaRyeDesc: "現在は無料で利用できます",
-                    inviteLink: '<a href="https://discord.com/oauth2/authorize?client_id=1536401706751885374&permissions=5630051437631616&response_type=code&redirect_uri=https%3A%2F%2Fsaturngroup02.github.io%2FOfficial-Pages%2F&integration_type=0&scope=bot" target="_blank" style="color: #00FF88; text-decoration: none; font-weight: bold;">招待リンク →</a>'
+                saturnStudio: {
+                    title: "土星スタジオ",
+                    desc: "土星グループ傘下の技術的コミュニティ。健全なコミュニティを目指す",
+                    detail: "土星スタジオは土星グループ傘下の技術的コミュニティであり、健全なコミュニティを目指しています。活動内容として、AsaRye-AIというディスコードBOTを運営しています。",
+                    botName: "AsaRye-AI",
+                    botDesc: "土星スタジオが運営するDiscord BOT",
+                    detailLink: "詳しくはこちら",
+                    siteLabel: "公式サイト",
+                    inviteBot: "BOTを招待する →",
+                    officialSite: "土星スタジオ公式サイト →",
+                    officialDiscord: "公式ディスコード →"
                 },
                 security: {
                     title: "ウィルス・詐欺講座",
@@ -757,15 +775,17 @@
                     desc: "Share BypassBOT🔑 that can skip ads on RootLab and similar sites",
                     detail: "Sharing BypassBOT🔑 and various tools that can skip ads on RootLab and similar sites."
                 },
-                bot: {
-                    title: "BOT",
-                    desc: "Test-stage BOT operated by Saturn Group",
-                    detail: "Saturn Group is currently operating test-stage BOTs.",
-                    luaRye: "LuaRye-Q7B",
-                    luaRyeDesc: "Currently private",
-                    asaRye: "AsaRye-G2B",
-                    asaRyeDesc: "Currently available for free",
-                    inviteLink: '<a href="https://discord.com/oauth2/authorize?client_id=1536401706751885374&permissions=5630051437631616&response_type=code&redirect_uri=https%3A%2F%2Fsaturngroup02.github.io%2FOfficial-Pages%2F&integration_type=0&scope=bot" target="_blank" style="color: #00FF88; text-decoration: none; font-weight: bold;">Invite Link →</a>'
+                saturnStudio: {
+                    title: "Saturn Studio",
+                    desc: "A technical community under the Saturn Group. Aiming for a healthy community",
+                    detail: "Saturn Studio is a technical community under the umbrella of the Saturn Group, aiming for a healthy community. As its activity, it operates a Discord bot called AsaRye-AI.",
+                    botName: "AsaRye-AI",
+                    botDesc: "Discord BOT operated by Saturn Studio",
+                    detailLink: "View Details",
+                    siteLabel: "Official Site",
+                    inviteBot: "Invite BOT →",
+                    officialSite: "Saturn Studio Official Site →",
+                    officialDiscord: "Official Discord →"
                 },
                 security: {
                     title: "Virus & Fraud Lecture",
@@ -827,15 +847,17 @@
                     desc: "Chia sẻ BypassBOT🔑 có thể bỏ qua quảng cáo trên RootLab và các trang web tương tự",
                     detail: "Chia sẻ BypassBOT🔑 và các công cụ khác nhau có thể bỏ qua quảng cáo trên RootLab và các trang web tương tự."
                 },
-                bot: {
-                    title: "BOT",
-                    desc: "BOT giai đoạn thử nghiệm do Nhóm Sao Thổ vận hành",
-                    detail: "Hiện tại Nhóm Sao Thổ đang vận hành các BOT giai đoạn thử nghiệm.",
-                    luaRye: "LuaRye-Q7B",
-                    luaRyeDesc: "Hiện đang riêng tư",
-                    asaRye: "AsaRye-G2B",
-                    asaRyeDesc: "Hiện có sẵn miễn phí",
-                    inviteLink: '<a href="https://discord.com/oauth2/authorize?client_id=1536401706751885374&permissions=5630051437631616&response_type=code&redirect_uri=https%3A%2F%2Fsaturngroup02.github.io%2FOfficial-Pages%2F&integration_type=0&scope=bot" target="_blank" style="color: #00FF88; text-decoration: none; font-weight: bold;">Liên kết mời →</a>'
+                saturnStudio: {
+                    title: "Saturn Studio",
+                    desc: "Cộng đồng kỹ thuật thuộc Nhóm Sao Thổ. Hướng đến một cộng đồng lành mạnh",
+                    detail: "Saturn Studio là một cộng đồng kỹ thuật trực thuộc Nhóm Sao Thổ, hướng đến một cộng đồng lành mạnh. Hoạt động chính là vận hành Discord bot có tên AsaRye-AI.",
+                    botName: "AsaRye-AI",
+                    botDesc: "Discord BOT do Saturn Studio vận hành",
+                    detailLink: "Xem Chi Tiết",
+                    siteLabel: "Trang Chính Thức",
+                    inviteBot: "Mời BOT →",
+                    officialSite: "Trang chính thức Saturn Studio →",
+                    officialDiscord: "Discord chính thức →"
                 },
                 security: {
                     title: "Bài Giảng Virus & Lừa Đảo",
@@ -860,74 +882,76 @@
                     detail: "Trò chuyện toàn cầu, các bot khác nhau và cuộc trò chuyện bình thường - trung tâm của các hoạt động cộng đồng Nhóm Sao Thổ."
                 }
             },
-            br: {
-                mainTitle: "Bem-vindo ao Mundo de Script Como o Universo",
-                tagline: "Uma Comunidade Roblox Script Japonesa em Rápido Crescimento",
-                viewMore: "Ver Detalhes →",
-                services: "Nossos Serviços",
-                founder: "Fundador / Proprietário do Servidor",
-                community: "Junte-se à Nossa Comunidade",
-                downloadLink: "📥 Download",
-                warning: "⚠️ Aviso:",
-                buildWorldWarning: "Este jogo foi criado com base em materiais gratuitos chamados Minecraft.OfficialAPK, portanto a segurança não pode ser garantida",
-                kdfSeries: "Série KDF:",
-                kdfV4: "Série KDF.v4",
+            ru: {
+                mainTitle: "Добро пожаловать в мир скриптов, подобный вселенной",
+                tagline: "Быстрорастущее японское сообщество скриптов Roblox",
+                viewMore: "Подробнее →",
+                services: "Наши услуги",
+                founder: "Основатель / Владелец сервера",
+                community: "Присоединяйтесь к нашему сообществу",
+                downloadLink: "📥 Скачать",
+                warning: "⚠️ Внимание:",
+                buildWorldWarning: "Эта игра создана на основе бесплатных материалов под названием Minecraft.OfficialAPK, поэтому безопасность не может быть гарантирована",
+                kdfSeries: "Серия KDF:",
+                kdfV4: "Серия KDF.v4",
                 kdfZeS1: "KDF.ze-S1",
-                saturnNetworks: "🪐Esfera de Coprosperidade de Saturno🪐 Servidores Afiliados:",
-                profilePageLink: "Ver Perfil Completo →",
-                footerTagline: "Bem-vindo ao Mundo de Script Como o Universo",
+                saturnNetworks: "🪐Сфера сопроцветания Сатурна🪐 Партнёрские серверы:",
+                profilePageLink: "Посмотреть полный профиль →",
+                footerTagline: "Добро пожаловать в мир скриптов, подобный вселенной",
                 robloxScript: {
                     title: "Roblox Script",
-                    desc: "Compartilhe e crie vários executores e scripts",
-                    detail: "Compartilhando e desenvolvendo a série AK.x e muitos outros scripts Roblox. Fornecemos uma variedade de scripts compatíveis com executores."
+                    desc: "Делитесь и создавайте различные экзекьюторы и скрипты",
+                    detail: "Делимся и разрабатываем серию AK.x и множество других скриптов Roblox. Предоставляем разнообразные скрипты, совместимые с экзекьюторами."
                 },
                 ftapScript: {
                     title: "FTAP Script (Sakurahub)",
-                    desc: "Scripts FTAP em desenvolvimento contínuo de atualização",
-                    detail: "Sakurahub é uma ferramenta de script para FTAP. Atualmente em desenvolvimento ativo com atualizações regulares.",
-                    detailPageLink: "Ver Página de Detalhes →"
+                    desc: "Скрипты для FTAP с непрерывной разработкой обновлений",
+                    detail: "Sakurahub — это инструмент скриптов для FTAP. В настоящее время активно развивается с регулярными обновлениями.",
+                    detailPageLink: "Посмотреть страницу подробнее →"
                 },
                 ai: {
                     title: "AI",
-                    desc: "Ferramentas de IA originais incluindo a série KDF",
-                    detail: "Desenvolvendo ferramentas de IA originais centradas na série KDF. Fornecendo soluções inovadoras aproveitando APIs."
+                    desc: "Оригинальные ИИ-инструменты, включая серию KDF",
+                    detail: "Разрабатываем оригинальные ИИ-инструменты на основе серии KDF. Предоставляем инновационные решения с использованием API."
                 },
                 bypass: {
                     title: "Bypass",
-                    desc: "Compartilhar BypassBOT🔑 que pode pular anúncios no RootLab e sites semelhantes",
-                    detail: "Compartilhando BypassBOT🔑 e várias ferramentas que podem pular anúncios no RootLab e sites semelhantes."
+                    desc: "Делимся BypassBOT🔑, который может пропускать рекламу на RootLab и подобных сайтах",
+                    detail: "Делимся BypassBOT🔑 и различными инструментами, которые могут пропускать рекламу на RootLab и подобных сайтах."
                 },
-                bot: {
-                    title: "BOT",
-                    desc: "BOT em estágio de teste operado pelo Grupo Saturno",
-                    detail: "O Grupo Saturno está operando BOTs em estágio de teste.",
-                    luaRye: "LuaRye-Q7B",
-                    luaRyeDesc: "Atualmente privado",
-                    asaRye: "AsaRye-G2B",
-                    asaRyeDesc: "Atualmente disponível gratuitamente",
-                    inviteLink: '<a href="https://discord.com/oauth2/authorize?client_id=1536401706751885374&permissions=5630051437631616&response_type=code&redirect_uri=https%3A%2F%2Fsaturngroup02.github.io%2FOfficial-Pages%2F&integration_type=0&scope=bot" target="_blank" style="color: #00FF88; text-decoration: none; font-weight: bold;">Link do Convite →</a>'
+                saturnStudio: {
+                    title: "Saturn Studio",
+                    desc: "Техническое сообщество под эгидой Saturn Group. Стремимся к здоровому сообществу",
+                    detail: "Saturn Studio — это техническое сообщество под эгидой Saturn Group, стремящееся к здоровому сообществу. В качестве деятельности мы управляем Discord-ботом под названием AsaRye-AI.",
+                    botName: "AsaRye-AI",
+                    botDesc: "Discord-бот, управляемый Saturn Studio",
+                    detailLink: "Подробнее",
+                    siteLabel: "Официальный сайт",
+                    inviteBot: "Пригласить бота →",
+                    officialSite: "Официальный сайт Saturn Studio →",
+                    officialDiscord: "Официальный Discord →"
                 },
                 security: {
-                    title: "Aula de Vírus e Fraude",
-                    desc: "Educação em Segurança (Absolutamente Proibido Abusar)",
-                    detail: "Educação em segurança para aprender sobre sites de fraude e loggers IP. Absolutamente proibido abusar."
+                    title: "Лекция о вирусах и мошенничестве",
+                    desc: "Обучение кибербезопасности (злоупотребление строго запрещено)",
+                    detail: "Обучение безопасности для изучения мошеннических сайтов и IP-логгеров. Категорически запрещено злоупотреблять."
                 },
                 saturnCo: {
-                    title: "Esfera de Coprosperidade de Saturno",
-                    desc: "Círculo de cooperação coordenando com vários servidores",
-                    detail: "Servidores de cooperação do Grupo Saturno. O crescimento de membros aumenta ao participar, permitindo crescimento mútuo."
+                    title: "Сфера сопроцветания Сатурна",
+                    desc: "Круг сотрудничества, координирующий работу с различными серверами",
+                    detail: "Партнёрские серверы Saturn Group. При присоединении число участников растёт, что позволяет развиваться взаимно."
                 },
                 minecraft: {
                     title: "Minecraft",
-                    desc: "Criação de mod, gerenciamento de servidor, desenvolvimento de jogos",
-                    detail: "Expandindo o mundo de Minecraft. Atualmente trabalhando em vários projetos incluindo criação de mod, gerenciamento de servidor e desenvolvimento de jogos.",
+                    desc: "Создание модов, управление сервером, разработка игр",
+                    detail: "Расширяем мир Minecraft. В настоящее время работаем над различными проектами, включая создание модов, управление сервером и разработку игр.",
                     buildWorldTitle: "BuildWorld.Craft",
-                    buildWorldDesc: "Jogo muito parecido com Minecraft"
+                    buildWorldDesc: "Игра, очень похожая на Minecraft"
                 },
                 communityOther: {
-                    title: "Comunidade & Outros",
-                    desc: "Chat, comunicação global, Bots",
-                    detail: "Chat global, vários bots e conversa casual - o centro das atividades da comunidade do Grupo Saturno."
+                    title: "Сообщество и прочее",
+                    desc: "Чат, глобальное общение, боты",
+                    detail: "Глобальный чат, различные боты и непринуждённые беседы — центр деятельности сообщества Saturn Group."
                 }
             },
             th: {
@@ -967,15 +991,17 @@
                     desc: "แบ่งปัน BypassBOT🔑 ที่สามารถข้ามโฆษณาบน RootLab และเว็บไซต์ที่คล้ายคลึงกัน",
                     detail: "แบ่งปัน BypassBOT🔑 และเครื่องมือต่างๆ ที่สามารถข้ามโฆษณาบน RootLab และเว็บไซต์ที่คล้ายคลึงกัน"
                 },
-                bot: {
-                    title: "BOT",
-                    desc: "BOT ในขั้นทดสอบที่ดำเนินการโดยกลุ่มดาวเสาร์",
-                    detail: "กลุ่มดาวเสาร์กำลังดำเนินการ BOT ในขั้นทดสอบ",
-                    luaRye: "LuaRye-Q7B",
-                    luaRyeDesc: "ปัจจุบันเป็นแบบส่วนตัว",
-                    asaRye: "AsaRye-G2B",
-                    asaRyeDesc: "ปัจจุบันใช้ได้ฟรี",
-                    inviteLink: '<a href="https://discord.com/oauth2/authorize?client_id=1536401706751885374&permissions=5630051437631616&response_type=code&redirect_uri=https%3A%2F%2Fsaturngroup02.github.io%2FOfficial-Pages%2F&integration_type=0&scope=bot" target="_blank" style="color: #00FF88; text-decoration: none; font-weight: bold;">ลิงก์เชิญ →</a>'
+                saturnStudio: {
+                    title: "Saturn Studio",
+                    desc: "ชุมชนทางเทคนิคภายใต้กลุ่มดาวเสาร์ มุ่งสู่ชุมชนที่ดีต่อสุขภาพ",
+                    detail: "Saturn Studio เป็นชุมชนทางเทคนิคภายใต้กลุ่มดาวเสาร์ มุ่งสู่ชุมชนที่ดีต่อสุขภาพ กิจกรรมคือการดำเนินการบอท Discord ชื่อ AsaRye-AI",
+                    botName: "AsaRye-AI",
+                    botDesc: "บอท Discord ที่ดำเนินการโดย Saturn Studio",
+                    detailLink: "ดูรายละเอียด",
+                    siteLabel: "เว็บไซต์ทางการ",
+                    inviteBot: "เชิญบอท →",
+                    officialSite: "เว็บไซต์ทางการ Saturn Studio →",
+                    officialDiscord: "Discord ทางการ →"
                 },
                 security: {
                     title: "บทเรียนเกี่ยวกับไวรัสและการหลอกลวง",
@@ -1057,16 +1083,16 @@
             const profileLink = document.querySelector('.profile-container a');
             if (profileLink) profileLink.textContent = t.profilePageLink;
             
-            // カード更新
+            // カード更新（HTMLのカード順に合わせる）
             const cards = document.querySelectorAll('.card');
             const cardData = [
                 t.robloxScript,
                 t.ftapScript,
-                t.bot,
-                t.ai,
-                t.saturnCo,
                 t.bypass,
+                t.saturnStudio,
+                t.ai,
                 t.security,
+                t.saturnCo,
                 t.minecraft,
                 t.communityOther
             ];
@@ -1109,7 +1135,7 @@
             }
             
             // AI セクションのKDF情報更新
-            const aiDetails = document.querySelectorAll('.detail')[3];
+            const aiDetails = document.querySelectorAll('.detail')[4];
             if (aiDetails) {
                 const kdfTitle = aiDetails.querySelector('p:nth-of-type(2)');
                 if (kdfTitle) {
@@ -1122,27 +1148,28 @@
             // フッター更新
             const footer = document.querySelector('footer p');
             if (footer) footer.textContent = t.footerTagline;
-            // BOTセクション（index: 2）の詳細を更新
-            if (cards[2]) {
-                const botDetail = cards[2].querySelector('.detail');
-                if (botDetail) {
-                    botDetail.innerHTML = `
-                        <p>${t.bot.detail}</p>
+
+            // 土星スタジオセクション（index: 3）の詳細を更新
+            if (cards[3]) {
+                const studioDetail = cards[3].querySelector('.detail');
+                if (studioDetail) {
+                    studioDetail.innerHTML = `
+                        <p>${t.saturnStudio.detail}</p>
                         <p style="margin-top: 15px;">
-                            <strong>${t.bot.luaRye}</strong><br>
-                            ${t.bot.luaRyeDesc}
+                            <strong>🤖 ${t.saturnStudio.botName}</strong><br>
+                            ${t.saturnStudio.botDesc}
                         </p>
-                        <p style="margin-top: 10px;">
-                            <strong>${t.bot.asaRye}</strong><br>
-                            ${t.bot.asaRyeDesc}
-                        </p>
-                        <p style="margin-top: 15px;">
-                            ${t.bot.inviteLink}
+                        <p style="margin-top: 15px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
+                            <a href="https://saturngroup02.github.io/AsaRye-AI/" target="_blank" style="color: #00FF88; text-decoration: none; font-weight: bold;">${t.saturnStudio.detailLink}<br>${t.saturnStudio.siteLabel} →</a>
+                            <a href="https://discord.com/oauth2/authorize?client_id=1536401706751885374&permissions=5630051437627520&integration_type=0&scope=bot" target="_blank" style="color: #00FF88; text-decoration: none; font-weight: bold;">${t.saturnStudio.inviteBot}</a>
+                            <a href="https://saturngroup02.github.io/SaturnStudioHome/" target="_blank" style="color: #00FF88; text-decoration: none; font-weight: bold;">${t.saturnStudio.officialSite}</a>
+                            <a href="https://discord.gg/ujX793DgjD" target="_blank" style="color: #00FF88; text-decoration: none; font-weight: bold;">${t.saturnStudio.officialDiscord}</a>
                         </p>
                     `;
                 }
             }
-            const saturnDetails = document.querySelectorAll('.detail')[4];
+
+            const saturnDetails = document.querySelectorAll('.detail')[6];
             if (saturnDetails) {
                 const serversTitle = saturnDetails.querySelector('p:nth-of-type(2)');
                 if (serversTitle) {
@@ -1168,7 +1195,7 @@
                     detail.style.display = 'none';
                 }
                 
-                // 絵文字をその場で一回転させる
+                // アイコンをその場で一回転させる
                 if (icon) {
                     icon.classList.remove('spin');
                     void icon.offsetWidth;
